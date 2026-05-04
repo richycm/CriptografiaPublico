@@ -1,4 +1,4 @@
-// Función para abrir la ventana de fotos
+// --- MODALES DE GALERÍAS ---
 function abrirModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -6,7 +6,6 @@ function abrirModal(modalId) {
     }
 }
 
-// Función para cerrar la ventana de fotos
 function cerrarModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -14,9 +13,24 @@ function cerrarModal(modalId) {
     }
 }
 
-// Cierra el modal si el usuario da clic afuera del cuadro negro
+// --- LIGHTBOX PARA FOTOS EN GRANDE ---
+function abrirFoto(src) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src; 
+    lightbox.classList.remove('hidden');
+}
+
+function cerrarFoto() {
+    document.getElementById('lightbox').classList.add('hidden');
+}
+
+// Cerrar al hacer clic fuera del contenido
 window.onclick = function(event) {
     if (event.target.classList.contains('modal')) {
+        event.target.classList.add('hidden');
+    }
+    if (event.target.classList.contains('lightbox')) {
         event.target.classList.add('hidden');
     }
 }
