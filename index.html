@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- update -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Ricardo Carmona | Ingeniero en Sistemas Computacionales | ESCOM</title>
@@ -10,436 +9,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- Mi estilo único -->
+    <link rel="stylesheet" href="estilos.css">
+    
     <!-- GSAP y librerías -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    
-    <style>
-        /* ===== RESET + BASE ===== */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-dark: #0B0C10;
-            --bg-card: rgba(31, 40, 51, 0.6);
-            --text-primary: #E0E0E0;
-            --text-secondary: #9BA4B5;
-            --cyan: #45A29E;
-            --cyan-glow: #66FCF1;
-            --gold: #D4AF37;
-            --gold-dim: #B8960C;
-            --border-glow: rgba(69, 162, 158, 0.3);
-            --shadow-sm: 0 8px 20px rgba(0,0,0,0.3);
-            --shadow-md: 0 15px 35px rgba(0,0,0,0.4);
-            --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            background-image: radial-gradient(circle at 25% 0%, rgba(69,162,158,0.08) 0%, transparent 60%),
-                              radial-gradient(circle at 85% 100%, rgba(212,175,55,0.05) 0%, transparent 70%);
-            font-family: 'Inter', sans-serif;
-            color: var(--text-primary);
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        .cipher-pattern {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path fill="none" stroke="%2345A29E" stroke-width="0.5" d="M10 10 L90 10 M10 20 L90 20 M10 30 L90 30 M10 40 L90 40 M10 50 L90 50 M10 60 L90 60 M10 70 L90 70 M10 80 L90 80 M10 90 L90 90 M10 10 L10 90 M20 10 L20 90 M30 10 L30 90 M40 10 L40 90 M50 10 L50 90 M60 10 L60 90 M70 10 L70 90 M80 10 L80 90 M90 10 L90 90"/><circle cx="25" cy="25" r="2" fill="%2345A29E"/><circle cx="75" cy="75" r="2" fill="%23D4AF37"/></svg>');
-            background-repeat: repeat;
-            background-size: 60px;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .glass-panel {
-            background: rgba(31, 40, 51, 0.5);
-            backdrop-filter: blur(14px);
-            border-radius: 2rem;
-            border: 1px solid rgba(69, 162, 158, 0.25);
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-
-        .glass-panel:hover {
-            border-color: rgba(69, 162, 158, 0.6);
-            box-shadow: var(--shadow-md), 0 0 15px rgba(69,162,158,0.2);
-            transform: translateY(-4px);
-        }
-
-        h1, h2, h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        .font-mono {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 0.9fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        @media (max-width: 900px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-            }
-            .hero-badge { justify-content: center; }
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: rgba(69,162,158,0.15);
-            border: 1px solid rgba(69,162,158,0.4);
-            border-radius: 40px;
-            padding: 0.4rem 1rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: var(--cyan-glow);
-            margin-bottom: 1.5rem;
-        }
-
-        .glitch-text {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #FFFFFF 0%, var(--cyan) 80%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-            display: inline-block;
-        }
-
-        .gradient-name {
-            font-size: 3rem;
-            background: linear-gradient(120deg, var(--gold), var(--cyan-glow));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        /* ===== AVATAR CON EFECTO ÉPICO (como el original pero mejor) ===== */
-        .avatar-wrapper {
-            position: relative;
-            width: 300px;
-            margin: 0 auto;
-        }
-
-        /* Anillo exterior con rotación suave (solo el anillo, no la foto) */
-        .avatar-ring {
-            position: absolute;
-            inset: -12px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, var(--cyan), var(--gold), var(--cyan), var(--gold), var(--cyan));
-            opacity: 0.7;
-            animation: rotate-slow 8s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes rotate-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Segundo anillo glow pulsante */
-        .avatar-glow {
-            position: absolute;
-            inset: -20px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(69,162,158,0.3), transparent 70%);
-            opacity: 0.5;
-            animation: pulse-glow 3s ease-in-out infinite;
-            z-index: -1;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 0.3; transform: scale(0.95); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-
-        .avatar-img {
-            width: 100%;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 25px 40px -15px black;
-            transition: transform 0.4s, box-shadow 0.4s;
-            display: block;
-            position: relative;
-            z-index: 2;
-        }
-
-        .avatar-img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 30px 50px -15px rgba(69, 162, 158, 0.4);
-            border-color: var(--cyan);
-        }
-
-        /* Botones */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.8rem 2rem;
-            border-radius: 3rem;
-            font-weight: 600;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(95deg, var(--cyan), #2C7A76);
-            color: white;
-            box-shadow: 0 4px 12px rgba(69,162,158,0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(69,162,158,0.4);
-            filter: brightness(1.05);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--cyan);
-            color: var(--cyan);
-        }
-
-        .btn-outline:hover {
-            background: rgba(69,162,158,0.1);
-            border-color: var(--cyan-glow);
-            transform: translateY(-3px);
-        }
-
-        .hobby-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .hobby-tile {
-            background: rgba(20, 25, 35, 0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 1.5rem;
-            padding: 1.8rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(69,162,158,0.2);
-            cursor: pointer;
-        }
-
-        .hobby-tile:hover {
-            border-color: var(--cyan);
-            transform: translateY(-6px);
-            background: rgba(31, 40, 51, 0.8);
-            box-shadow: 0 20px 35px -12px black;
-        }
-
-        .hobby-icon {
-            font-size: 2.5rem;
-            color: var(--cyan);
-            margin-bottom: 1rem;
-        }
-
-        .cardano-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            background: #0F1219;
-            padding: 1rem;
-            border-radius: 1.5rem;
-            gap: 6px;
-            max-width: 280px;
-            margin: 0 auto;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .grid-cell {
-            aspect-ratio: 1;
-            background: #1F2833;
-            border-radius: 12px;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        .grid-cell.hole {
-            background: radial-gradient(circle at 30% 30%, var(--cyan-glow), var(--cyan));
-            box-shadow: 0 0 8px var(--cyan-glow);
-        }
-
-        .secret-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-            max-height: 60vh;
-            overflow-y: auto;
-            padding: 0.5rem;
-        }
-        
-        .secret-gallery img {
-            width: 100%;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border-radius: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            border: 1px solid rgba(69,162,158,0.3);
-        }
-        
-        .secret-gallery img:hover {
-            transform: scale(1.03);
-            border-color: var(--cyan);
-        }
-
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.25s;
-        }
-
-        .modal:not(.hidden) {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-card {
-            background: #11151E;
-            border-radius: 2rem;
-            max-width: 90vw;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 2rem;
-            border: 1px solid var(--cyan);
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--cyan);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        
-        .close-modal:hover {
-            transform: rotate(90deg);
-            color: white;
-        }
-
-        .lightbox-img {
-            max-width: 90vw;
-            max-height: 85vh;
-            border-radius: 1rem;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            transition: 0.2s;
-            font-size: 0.9rem;
-            text-decoration: none;
-        }
-        .footer-links a:hover { color: var(--cyan); }
-
-        hr {
-            border-color: rgba(69,162,158,0.2);
-        }
-        
-        .email-item {
-            background: rgba(0,0,0,0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.8rem;
-            border: 1px solid rgba(69,162,158,0.3);
-        }
-        
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #1a1a2e; }
-        ::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 10px; }
-    </style>
 </head>
 <body>
 
-<div class="cipher-pattern"></div>
+<div class="geometric-bg"></div>
 
 <div class="container">
-    <!-- HERO SECTION - CON FOTO ÉPICA (anillo rotante + glow pulsante) -->
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
             <div>
                 <div class="hero-badge">
                     <i class="fa-regular fa-eye"></i> <span class="font-mono">// portafolio.ricardo_carmona</span>
                 </div>
-                <h1 class="glitch-text">Ricardo Carmona</h1>
-                <h2 class="gradient-name">Martínez</h2>
-                <div class="font-mono" style="font-size: 1.2rem; margin: 1rem 0 1.5rem;">
-                    > <span id="typed" class="text-cyan"></span>
+                <h1 class="hero-name">Ricardo Carmona</h1>
+                <h2 class="hero-lastname">Martínez</h2>
+                <div class="font-mono typing-line">
+                    > <span id="typed" class="typed-text"></span>
                 </div>
-                <p style="color: var(--text-secondary); max-width: 480px; margin-bottom: 2rem;">
+                <p class="hero-subtitle">
                 Ingeniero en Sistemas Computacionales | ESCOM
                 </p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div class="hero-buttons">
                     <a href="CV/CVCMR.pdf" class="btn btn-primary" target="_blank">
                         <i class="fa-regular fa-file-pdf"></i> Ver Curriculum Vitae
                     </a>
-                    <button class="btn btn-outline" onclick="mostrarLlave()">
+                    <button class="btn btn-secondary" onclick="mostrarLlave()">
                         <i class="fa-solid fa-key"></i> Obtener Llave (Próximamente)
                     </button>
                 </div>
@@ -453,105 +55,105 @@
     </section>
 
     <!-- SOBRE MÍ / CRIPTOGRAFÍA -->
-    <section class="reveal" style="margin: 4rem 0;">
-        <div class="glass-panel" style="padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
+    <section class="reveal section-spacing">
+        <div class="neo-panel crypto-section">
             <div>
-                <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">🗝️ Acerca de Criptografía</h3>
-                <p style="margin-bottom: 1rem; line-height: 1.6;">
+                <h3 class="section-title">🗝️ Acerca de Criptografía</h3>
+                <p class="crypto-text">
                     <strong>Girolamo Cardano y la Rejilla Giratoria</strong><br>
                     Durante el Renacimiento, el brillante pero excéntrico matemático Girolamo Cardano inventó la Rejilla de Cardano (1550). Convencido de que sus rivales querían robar sus secretos, diseñó una plantilla con agujeros; al colocarla sobre un papel, escribía el mensaje oculto y luego rellenaba el resto de la hoja creando un texto aparentemente normal y aburrido para despistar a cualquiera.
                 </p>
-                <p style="line-height: 1.6;">
+                <p class="crypto-text">
                     Este concepto evolucionó siglos después a la famosa <em>Rejilla Giratoria</em> de Fleissner, una plantilla matemática que se rota 90 grados para seguir escribiendo, formando bloques densos de caracteres incomprensibles sin la rejilla original. Un verdadero hito de la esteganografía.
                 </p>
             </div>
-            <div style="text-align: center;">
+            <div class="grid-container">
                 <div class="cardano-grid" id="cardanoGrid"></div>
-                <button id="rotarRejilla" class="btn btn-outline" style="margin-top: 1rem; padding: 0.4rem 1rem; font-size: 0.8rem;">
+                <button id="rotarRejilla" class="btn btn-small">
                     <i class="fa-solid fa-rotate-right"></i> Girar Rejilla (90°)
                 </button>
-                <p class="font-mono" style="margin-top: 1rem; font-size: 0.7rem;">Haz clic en los agujeros para crear tu patrón</p>
+                <p class="font-mono grid-hint">Haz clic en los agujeros para crear tu patrón</p>
             </div>
         </div>
     </section>
 
     <!-- HOBBIES -->
-    <section class="reveal" style="margin: 6rem 0;">
-        <h2 style="font-size: 2rem; text-align: center; margin-bottom: 0.5rem;">Hobbies e Intereses</h2>
-        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Actividades que me mantienen enfocado fuera del código.</p>
+    <section class="reveal section-spacing">
+        <h2 class="section-heading">Hobbies e Intereses</h2>
+        <p class="section-description">Actividades que me mantienen enfocado fuera del código.</p>
         <div class="hobby-grid">
             <div class="hobby-tile" onclick="abrirModal('fotoModal')">
                 <div class="hobby-icon"><i class="fa-solid fa-camera-retro"></i></div>
                 <h3>Fotografía</h3>
-                <p class="font-mono" style="font-size: 0.75rem;">Ver galería →</p>
+                <p class="font-mono hobby-link">Ver galería →</p>
             </div>
             <div class="hobby-tile" onclick="abrirModal('deportesModal')">
                 <div class="hobby-icon"><i class="fa-solid fa-futbol"></i></div>
                 <h3>Deportes y Aire Libre</h3>
-                <p class="font-mono">Ver galería →</p>
+                <p class="font-mono hobby-link">Ver galería →</p>
             </div>
             <div class="hobby-tile" onclick="abrirModal('librosModal')">
                 <div class="hobby-icon"><i class="fa-solid fa-book-open"></i></div>
                 <h3>Mis Lecturas</h3>
-                <p class="font-mono">Ver galería →</p>
+                <p class="font-mono hobby-link">Ver galería →</p>
             </div>
             <div class="hobby-tile" onclick="abrirModal('rubikModal')">
                 <div class="hobby-icon"><i class="fa-solid fa-cube"></i></div>
                 <h3>Rompecabezas</h3>
-                <p class="font-mono">Ver galería →</p>
+                <p class="font-mono hobby-link">Ver galería →</p>
             </div>
         </div>
     </section>
 
-    <!-- FORMACIÓN ACADÉMICA (con tus estudios REALES) -->
-    <section class="reveal glass-panel" style="padding: 2rem; margin: 2rem 0;">
-        <h2 style="font-size: 1.8rem;">🎓 Formación Académica</h2>
-        <div style="margin-top: 1.5rem;">
-            <div style="border-left: 3px solid var(--cyan); padding-left: 1.5rem; margin-bottom: 2rem;">
-                <p class="font-mono" style="color: var(--cyan);">2022 - Actualidad</p>
+    <!-- FORMACIÓN ACADÉMICA -->
+    <section class="reveal neo-panel education-section">
+        <h2 class="section-heading left-align">🎓 Formación Académica</h2>
+        <div class="education-timeline">
+            <div class="timeline-item">
+                <p class="font-mono timeline-date">2022 - Actualidad</p>
                 <h3>Escuela Superior de Cómputo (ESCOM) - IPN</h3>
-                <h4 style="color: var(--text-secondary); margin: 0.25rem 0 0.5rem;">Ingeniería en Sistemas Computacionales</h4>
+                <h4 class="timeline-degree">Ingeniería en Sistemas Computacionales</h4>
                 <p>Especialización en arquitectura de software, bases de datos, desarrollo backend y criptografía. Preparándome para crear sistemas robustos, seguros y eficientes.</p>
             </div>
-            <div style="border-left: 3px solid var(--gold); padding-left: 1.5rem;">
-                <p class="font-mono" style="color: var(--gold);">2019 - 2022</p>
+            <div class="timeline-item timeline-item-alt">
+                <p class="font-mono timeline-date-alt">2019 - 2022</p>
                 <h3>CECYT 3 "Estanislao Ramírez Ruiz" - IPN</h3>
-                <h4 style="color: var(--text-secondary); margin: 0.25rem 0 0.5rem;">Técnico en Computación</h4>
+                <h4 class="timeline-degree">Técnico en Computación</h4>
                 <p>Formación técnica en programación, redes, hardware y fundamentos de sistemas computacionales. Base sólida que impulsó mi pasión por la tecnología.</p>
             </div>
         </div>
     </section>
 
     <!-- ARCHIVOS Y LLAVES -->
-    <section class="reveal" style="margin: 4rem 0;">
-        <div class="glass-panel" style="padding: 2rem; text-align: center;">
-            <i class="fa-solid fa-key" style="font-size: 3rem; color: var(--gold);"></i>
-            <h3 style="margin-top: 1rem;">Llave Pública (RSA)</h3>
-            <p style="max-width: 500px; margin: 1rem auto;">Herramienta fundamental para la comunicación asimétrica segura. Permite que me envíen mensajes encriptados que solo mi llave privada puede descifrar.</p>
-            <button class="btn btn-primary" style="margin-top: 0.5rem;" onclick="mostrarLlave()">Obtener Llave (Próximamente)</button>
+    <section class="reveal section-spacing">
+        <div class="neo-panel key-section">
+            <i class="fa-solid fa-key key-icon"></i>
+            <h3>Llave Pública (RSA)</h3>
+            <p>Herramienta fundamental para la comunicación asimétrica segura. Permite que me envíen mensajes encriptados que solo mi llave privada puede descifrar.</p>
+            <button class="btn btn-primary" onclick="mostrarLlave()">Obtener Llave (Próximamente)</button>
         </div>
     </section>
 
     <!-- CONTACTO Y REDES -->
-    <footer style="padding: 2rem 0 3rem; text-align: center;">
-        <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">Contacto</h2>
+    <footer class="footer">
+        <h2 class="section-heading">Contacto</h2>
         
-        <div style="margin-bottom: 2rem;">
-            <p style="margin-bottom: 1rem;">Selecciona mi correo si deseas escribirme:</p>
-            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <div class="contact-emails">
+            <p>Selecciona mi correo si deseas escribirme:</p>
+            <div class="email-list">
                 <span class="email-item">rcarmonam1900@alumno.ipn.mx</span>
                 <span class="email-item">ricardocarmonamartinez1iv12@gmail.com</span>
             </div>
         </div>
 
-        <div class="footer-links" style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem;">
+        <div class="footer-links">
             <a href="https://github.com/richycm" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
             <a href="https://www.facebook.com/ricardo.carmona.5686" target="_blank"><i class="fa-brands fa-facebook"></i> Facebook</a>
             <a href="https://www.instagram.com/ricardo_carmar/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
         </div>
         
-        <hr style="margin: 1rem auto; width: 100px;">
-        <p class="font-mono" style="font-size: 0.7rem;">Ricardo Carmona Martínez &copy; 2026</p>
+        <hr class="footer-divider">
+        <p class="font-mono copyright">Ricardo Carmona Martínez &copy; 2026</p>
     </footer>
 </div>
 
@@ -560,7 +162,7 @@
     <div class="modal-card">
         <button class="close-modal" onclick="cerrarModal('fotoModal')">&times;</button>
         <h3><i class="fa-solid fa-camera"></i> Mi gusto por las fotos</h3>
-        <p class="font-mono" style="margin-bottom: 1rem;">Haz clic en cualquier foto para verla en pantalla completa.</p>
+        <p class="font-mono modal-hint">Haz clic en cualquier foto para verla en pantalla completa.</p>
         <div class="secret-gallery">
             <img src="Fotografias/Fotografía/Foto1.jpg" alt="Foto" onclick="abrirFoto(this.src)">
             <img src="Fotografias/Fotografía/foto2.jpg" alt="Foto" onclick="abrirFoto(this.src)">
@@ -632,109 +234,12 @@
 
 <!-- LIGHTBOX -->
 <div id="lightbox" class="modal hidden" onclick="cerrarFoto()">
-    <div class="modal-card" style="background: transparent; border: none; padding: 0; max-width: 95vw;" onclick="event.stopPropagation()">
-        <button class="close-modal" style="position: fixed; top: 1rem; right: 2rem; background: rgba(0,0,0,0.7); border-radius: 50%; width: 50px; height: 50px;" onclick="cerrarFoto()">&times;</button>
-        <img id="lightboxImg" class="lightbox-img" src="" style="width: auto; max-width: 90vw; max-height: 85vh; margin: 0 auto; display: block;">
+    <div class="modal-card lightbox-card" onclick="event.stopPropagation()">
+        <button class="close-modal lightbox-close" onclick="cerrarFoto()">&times;</button>
+        <img id="lightboxImg" class="lightbox-img" src="" alt="Vista ampliada">
     </div>
 </div>
 
-<script>
-    // Typed.js
-    new Typed('#typed', {
-        strings: ['Ingeniero en Sistemas Computacionales', 'Apasionado por la Criptografía', 'Backend Developer', 'Estudiante ESCOM'],
-        typeSpeed: 55,
-        backSpeed: 35,
-        loop: true,
-        cursorChar: '_'
-    });
-
-    // Rejilla de Cardano
-    let holes = [[1,0,1,0],[0,1,0,1],[1,0,1,0],[0,1,0,1]];
-    const gridEl = document.getElementById('cardanoGrid');
-    if (gridEl) {
-        function renderGrid() {
-            gridEl.innerHTML = '';
-            for(let i=0;i<4;i++) {
-                for(let j=0;j<4;j++) {
-                    const cell = document.createElement('div');
-                    cell.className = 'grid-cell' + (holes[i][j] ? ' hole' : '');
-                    cell.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        holes[i][j] = holes[i][j] ? 0 : 1;
-                        renderGrid();
-                    });
-                    gridEl.appendChild(cell);
-                }
-            }
-        }
-        renderGrid();
-        
-        const rotarBtn = document.getElementById('rotarRejilla');
-        if (rotarBtn) {
-            rotarBtn.onclick = () => {
-                const rotated = Array(4).fill().map(() => Array(4).fill(0));
-                for(let i=0;i<4;i++) for(let j=0;j<4;j++) rotated[j][3-i] = holes[i][j];
-                holes = rotated;
-                renderGrid();
-            };
-        }
-    }
-
-    // Modales
-    function abrirModal(id) { 
-        const modal = document.getElementById(id);
-        if (modal) {
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-    
-    function cerrarModal(id) { 
-        const modal = document.getElementById(id);
-        if (modal) {
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    }
-    
-    function abrirFoto(src) {
-        const lb = document.getElementById('lightbox');
-        const img = document.getElementById('lightboxImg');
-        if (lb && img) {
-            img.src = src;
-            lb.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-    
-    function cerrarFoto() {
-        const lb = document.getElementById('lightbox');
-        if (lb) {
-            lb.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    }
-    
-    function mostrarLlave() {
-        alert("Llave pública RSA disponible próximamente. Por ahora, puedes contactarme por correo.");
-    }
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { 
-            if(entry.isIntersecting) entry.target.classList.add('visible'); 
-        });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-
-    // Cerrar modales con click fuera
-    window.onclick = e => {
-        if(e.target.classList && e.target.classList.contains('modal')) {
-            e.target.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    };
-</script>
+<script src="script.js"></script>
 </body>
 </html>
