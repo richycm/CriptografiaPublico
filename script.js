@@ -2,7 +2,7 @@
 
 // Typed.js Animation
 new Typed('#typed', {
-    strings: ['Ingeniero en Sistemas Computacionales', 'Criptógrafo experimental', 'Backend Architect', 'Cazador de bugs'],
+    strings: ['Ingeniero en Sistemas Computacionales', 'Never stop learning 🚀', 'Backend Architect', 'Cazador de bugs 👾', 'Amante del conocimiento 📚'],
     typeSpeed: 55,
     backSpeed: 35,
     loop: true,
