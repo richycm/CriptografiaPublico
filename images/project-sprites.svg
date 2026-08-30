@@ -1,0 +1,22 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="800" fill="#0E1318"/>
+  <rect x="200" y="210" width="400" height="340" rx="16" fill="#181F2A" stroke="#388BFD" stroke-width="2"/>
+  <rect x="230" y="250" width="100" height="110" rx="10" fill="#238636" fill-opacity="0.3" stroke="#238636" stroke-width="1.5"/>
+  <circle cx="280" cy="290" r="18" fill="#58A6FF"/>
+  <path d="M 280 310 L 280 340 M 265 325 L 295 325 M 280 340 L 265 355 M 280 340 L 295 355" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  
+  <rect x="350" y="250" width="100" height="110" rx="10" fill="#238636" fill-opacity="0.3" stroke="#238636" stroke-width="1.5"/>
+  <circle cx="400" cy="290" r="18" fill="#58A6FF"/>
+  <path d="M 400 310 L 400 340 M 385 320 L 415 330 M 400 340 L 390 355 M 400 340 L 415 355" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+  <rect x="470" y="250" width="100" height="110" rx="10" fill="#238636" fill-opacity="0.3" stroke="#238636" stroke-width="1.5"/>
+  <circle cx="520" cy="290" r="18" fill="#58A6FF"/>
+  <path d="M 520 310 L 520 340 M 505 330 L 535 320 M 520 340 L 510 355 M 520 340 L 530 355" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+  <rect x="230" y="390" width="340" height="130" rx="10" fill="#0D1117" stroke="#30363D" stroke-width="1"/>
+  <text x="400" y="440" fill="#7EE787" font-family="'Courier New', monospace" font-size="16" text-anchor="middle">VIDEO TO SPRITESHEET • IA CHROMA</text>
+  <text x="400" y="480" fill="#8B949E" font-family="'Inter', sans-serif" font-size="14" text-anchor="middle">Extracción de Frames • Exportación PNG transparente</text>
+  
+  <text x="400" y="620" fill="#FFFFFF" font-family="'Inter', sans-serif" font-weight="700" font-size="32" text-anchor="middle" letter-spacing="1">CREADOR DE SPRITES</text>
+  <text x="400" y="655" fill="#8B949E" font-family="'Inter', sans-serif" font-weight="500" font-size="18" text-anchor="middle">Generador de Spritesheets con IA para Videojuegos</text>
+</svg>
