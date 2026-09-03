@@ -96,4 +96,29 @@ LwIDAQAB
   - Conservación intacta de la carpeta `nice/` como respaldo.
 
 ---
-*Documento generado el 29 de Agosto de 2026.*
+
+## 📄 8. Actualización de Curriculum Vitae
+- **Integración de `Curriculum VITAE.pdf`:**
+  - Implementación del nuevo documento en la raíz del proyecto (`Curriculum VITAE.pdf`).
+  - Actualización del enlace de descarga en el menú lateral de navegación (`fixed-nav`) con el atributo `download="Curriculum VITAE.pdf"`.
+  - Inclusión de botones de descarga directa en las secciones de **Formación Académica** (`#timeline`) y en el pie de página (**Contacto** / `#contact`).
+  - Sincronización y respaldo en el directorio `CV/` y `nice/` para compatibilidad completa.
+
+---
+
+## 🧹 9. Depuración, Eliminación de Archivos Innecesarios & Optimización
+- **Eliminación de la Carpeta de Respaldo `nice/`:**
+  - Se eliminó el clon completo del sitio antiguo (`nice/`, 35.61 MB, 303 archivos), reduciendo el peso del repositorio en más del 50%. El historial completo permanece resguardado en Git.
+- **Limpieza de Assets Duplicados y Huérfanos en `images/`:**
+  - Eliminación de 13 archivos redundantes (~2.2 MB): duplicados de capturas de pantalla de proyectos (`project-amate.*`, `project-des.*`, `project-gridmaster.*`, `project-sprites.*`, `project-vlsm.*`), duplicados de la foto de perfil (`ricardo-avatar.jpeg`, `DSC07033.jpg`) y sobrantes de la plantilla original de Dennis Snellenberg (`meta-image-*.jpg`).
+- **Limpieza de Fotografías Huérfanas:**
+  - Eliminación de `Fotografias/Yo/Yo.jpg` por no estar enlazada en ninguna sección.
+- **Normalización de Rutas para Servidores Web (GitHub Pages / Linux):**
+  - Corrección de la carpeta `Fotografias/Fotografía/` a `Fotografias/Fotografia/` (sin tilde) y actualización de las 15 referencias en `index.html` para evitar errores de codificación HTTP (404 Not Found).
+- **Validación de Integridad:**
+  - Verificación del 100% de los 92 recursos enlazados en `index.html` (scripts, estilos, fuentes, imágenes y descargas), confirmando cero enlaces rotos.
+
+---
+*Documento actualizado el 3 de Septiembre de 2026.*
+
+
