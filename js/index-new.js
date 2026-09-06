@@ -980,19 +980,29 @@ function initScrollLetters() {
   // Fixed example with resizing
   // https://codepen.io/GreenSock/pen/QWqoKBv?editors=0010
 
-  let direction = 1; // 1 = forward, -1 = backward scroll
+  let direction = 1; // 1 = forward (left), -1 = backward (right)
 
   const roll1 = roll(".big-name .name-wrap", {duration: 18}),
-        roll2 = roll(".rollingText02", {duration: 10}, true),
-        scroll = ScrollTrigger.create({
-          trigger: document.querySelector('[data-scroll-container]'),
-          onUpdate(self) {
-            if (self.direction !== direction) {
-              direction *= -1;
-              gsap.to([roll1, roll2], {timeScale: direction, overwrite: true});
-            }
-          }
-        });
+        roll2 = roll(".rollingText02", {duration: 10}, true);
+
+  // Ensure roll starts moving to the left on page load
+  gsap.set([roll1, roll2], {timeScale: 1});
+
+  const scroll = ScrollTrigger.create({
+    trigger: document.querySelector('[data-scroll-container]'),
+    onUpdate(self) {
+      const vel = self.getVelocity();
+      if (vel > 20 && direction !== 1) {
+        // Scrolling down: move towards the left
+        direction = 1;
+        gsap.to([roll1, roll2], {timeScale: 1, overwrite: true, duration: 0.3});
+      } else if (vel < -20 && direction !== -1) {
+        // Scrolling up: move towards the right
+        direction = -1;
+        gsap.to([roll1, roll2], {timeScale: -1, overwrite: true, duration: 0.3});
+      }
+    }
+  });
 
   // helper function that clones the targets, places them next to the original, then animates the xPercent in a loop to make it appear to roll across the screen in a seamless loop.
   function roll(targets, vars, reverse) {

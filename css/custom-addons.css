@@ -320,28 +320,7 @@
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
 }
 
-.rsa-key-box {
-  background: #0e1013;
-  border: 1px solid var(--snellenberg-border);
-  border-radius: 1.5rem;
-  padding: 1.8rem;
-  margin-top: 1.5rem;
-  text-align: left;
-}
 
-.rsa-key-content {
-  font-family: 'Space Grotesk', monospace;
-  font-size: 0.75rem;
-  color: #8b949e;
-  line-height: 1.6;
-  max-height: 100px;
-  overflow-y: auto;
-  word-break: break-all;
-  background: #080a0d;
-  padding: 1rem;
-  border-radius: 0.8rem;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
 
 /* ==========================================
    EDITORIAL HOBBIES & MOMENTOS CARDS

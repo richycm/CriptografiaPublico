@@ -57,29 +57,18 @@ Este documento detalla todas las modificaciones, optimizaciones, adiciones cript
 
 ## 🔑 5. Llave Pública RSA (2048 bits) Real
 - **Verificación Criptográfica:**
-  - Extracción y análisis de la llave binaria oficial desde `Llave/PublicaLlaveRicardo.pem` (298 bytes con encabezado de longitud Java ASN.1 / X.509 DER).
+  - Extracción y análisis de la llave binaria oficial desde `Llave/mi_clave_publica.pem` (298 bytes con encabezado de longitud Java ASN.1 / X.509 DER).
   - Verificación matemática del módulo $n$ (2048 bits) y exponente público de Fermat $e = 65537$.
 - **Integración en el Footer:**
-  - Bloque con diseño terminal oscuro y botón funcional que copia la llave directamente al portapapeles con notificación toast:
-```text
------BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzVtFqjJfDGphawOijZYc
-alubj2ZxQqclMpYutjIbujKGCbLdl5GNPDbuJg4WyY20xL3sUmJQU2Dw0cRaIXJt
-iahxYycGkkK2vID42j2fr9qIFimB7BkBiv64jmp3QrAVoiEUnw81XtzBoa66F3T4
-nKbanAdRlzzLSIPx4zsWeIv7HcaEPvaq9mpf3XNenNPaZplweNYypxai09+IWE0j
-r0t7xdipz+P3hXpJsBD63Q74dIdVzr3/49ENTA1hcM1KWYAoqqnGSpyTfMSrfbDe
-hJ3lP2VoA4zYR+80AIz6Zf0fT7oSyLPfRPjUjVNX3utvTgw00N+acZgvDe4KhRQc
-LwIDAQAB
------END PUBLIC KEY-----
-```
+  - Integración armónica y minimalista junto a los enlaces de redes sociales y descarga de CV con enlace directo de descarga para `Llave/mi_clave_publica.pem` e icono de llave cian.
 
 ---
 
 ## 🌐 6. Redes Sociales & Contacto
 - **Píldoras de Correo Electrónico:**
   - Botones ovalados con tipografía monospace (`rcarmonam1900@alumno.ipn.mx` y `ricardocarmonamartinez1iv12@gmail.com`).
-- **Integración de Redes Sociales:**
-  - Inclusión de **LinkedIn**, **GitHub**, **Facebook** e **Instagram** con sus iconos oficiales de FontAwesome.
+- **Barra Unificada de Redes, CV y Llave RSA:**
+  - Fila horizontal centrada con **LinkedIn**, **GitHub**, **Facebook**, **Instagram**, **Descargar CV** y **Llave RSA (.pem)**, compartiendo estilos y microinteracciones de hover.
 - **Copyright Centrado:**
   - `Ricardo Carmona Martínez © 2026` perfectamente alineado al centro del viewport.
 
@@ -90,6 +79,8 @@ LwIDAQAB
   - Solución del conflicto donde el menú lateral congelaba el motor de scroll. Se conectó la función `scrollToSection` con `scroll.start()` y `scroll.scrollTo()`, permitiendo desplazamiento fluido entre todas las secciones (`#home`, `#about`, `#work`, `#crypto`, `#hobbies`, `#timeline`, `#contact`).
 - **Escalado del Menú Lateral (Drawer):**
   - Reducción de la tipografía gigante a un tamaño refinado y equilibrado (`clamp(1.4rem, 2.5vw, 2.1rem)`).
+- **Corrección de Dirección del Ticker Hero (Nombre Gigante):**
+  - Se calibró la animación de GSAP ScrollTrigger en `js/index-new.js` y Locomotive Scroll en `index.html` (`data-scroll-speed="-4"`) para que el nombre ruede fluidamente hacia la **izquierda** al cargar la página y al hacer scroll hacia abajo, facilitando la lectura natural de izquierda a derecha.
 - **Limpieza de Archivos para GitHub Pages:**
   - Eliminación de archivos temporales pesados (`media/`, videos de prueba, respaldos antiguos).
   - Organización modular en carpetas (`CV/`, `Fotografias/`, `Fotos/`, `Llave/`, `MisProyectos/`, `css/`, `fonts/`, `images/`, `js/`).
@@ -99,10 +90,9 @@ LwIDAQAB
 
 ## 📄 8. Actualización de Curriculum Vitae
 - **Integración de `Curriculum VITAE.pdf`:**
-  - Implementación del nuevo documento en la raíz del proyecto (`Curriculum VITAE.pdf`).
-  - Actualización del enlace de descarga en el menú lateral de navegación (`fixed-nav`) con el atributo `download="Curriculum VITAE.pdf"`.
-  - Inclusión de botones de descarga directa en las secciones de **Formación Académica** (`#timeline`) y en el pie de página (**Contacto** / `#contact`).
-  - Sincronización y respaldo en el directorio `CV/` y `nice/` para compatibilidad completa.
+  - Implementación del documento dentro de la carpeta modular dedicada `CV/Curriculum VITAE.pdf`.
+  - Actualización de todos los enlaces de descarga en `index.html` (menú lateral `fixed-nav`, sección de formación `#timeline` y pie de página `#contact`) con ruta `CV/Curriculum%20VITAE.pdf`.
+  - Eliminación de la copia duplicada en la raíz del repositorio para mantener la estructura limpia.
 
 ---
 
@@ -115,10 +105,15 @@ LwIDAQAB
   - Eliminación de `Fotografias/Yo/Yo.jpg` por no estar enlazada en ninguna sección.
 - **Normalización de Rutas para Servidores Web (GitHub Pages / Linux):**
   - Corrección de la carpeta `Fotografias/Fotografía/` a `Fotografias/Fotografia/` (sin tilde) y actualización de las 15 referencias en `index.html` para evitar errores de codificación HTTP (404 Not Found).
+- **Limpieza de Llaves RSA y Archivos Huérfanos / Obsoletos:**
+  - Eliminación de la llave pública anterior (`Llave/PublicaLlaveRicardo.pem`) y del archivo temporal en la raíz (`mi_clave_publica.pem`), estandarizando la nueva llave en `Llave/mi_clave_publica.pem`.
+  - Eliminación del archivo comprimido redundante `MisProyectos/AMateUWU/Proyecto Final.zip` (3.7 MB).
+  - Eliminación de archivos de metadatos de editores y notas de diseño (`prepros-6.config` y carpeta `_notes/` con archivos `.mno`).
+  - Eliminación de estilos CSS y assets duplicados en subproyectos (`bootstrap.min666.css`, `banner-bgv.png`) y versión anterior del currículum (`CV/CVCMR.pdf`).
 - **Validación de Integridad:**
-  - Verificación del 100% de los 92 recursos enlazados en `index.html` (scripts, estilos, fuentes, imágenes y descargas), confirmando cero enlaces rotos.
+  - Verificación del 100% de los recursos enlazados en `index.html` (scripts, estilos, fuentes, imágenes y descargas), confirmando cero enlaces rotos.
 
 ---
-*Documento actualizado el 3 de Septiembre de 2026.*
+*Documento actualizado el 5 de Septiembre de 2026.*
 
 
