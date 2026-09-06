@@ -137,6 +137,9 @@ function initLoaderHome() {
 
   tl.call(function() {
     scroll.start();
+    if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+      scroll.update();
+    }
   });
   
 }
@@ -447,7 +450,11 @@ function initPageTransitions() {
       smooth: true,
     });
 
-    window.onresize = scroll.update();
+    window.addEventListener('resize', () => {
+      if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+        scroll.update();
+      }
+    });
 
     scroll.on("scroll", () => ScrollTrigger.update());
 
@@ -481,6 +488,41 @@ function initPageTransitions() {
 
     // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
     ScrollTrigger.refresh();
+
+    // Auto-update Locomotive Scroll whenever container height changes (images load, Cardano renders, etc.)
+    const scrollElem = container.querySelector('[data-scroll-container]');
+    if (window.ResizeObserver && scrollElem) {
+      const resizeObserver = new ResizeObserver(() => {
+        if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+          scroll.update();
+        }
+      });
+      resizeObserver.observe(scrollElem);
+    }
+
+    // Listen for complete window load and font readiness
+    window.addEventListener('load', () => {
+      if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+        scroll.update();
+      }
+    });
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+          scroll.update();
+        }
+      });
+    }
+
+    // Incremental safety checks
+    [400, 1000, 2000, 3500].forEach(delayTime => {
+      setTimeout(() => {
+        if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+          scroll.update();
+        }
+      }, delayTime);
+    });
   }  
 }
 
@@ -1121,6 +1163,16 @@ function initLazyLoad() {
     // https://github.com/verlok/vanilla-lazyload
     var lazyLoadInstance = new LazyLoad({ 
       elements_selector: ".lazy",
+      callback_loaded: function() {
+        if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+          scroll.update();
+        }
+      },
+      callback_finish: function() {
+        if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+          scroll.update();
+        }
+      }
     });
 
 }

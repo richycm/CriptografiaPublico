@@ -695,9 +695,9 @@
             </section>
 
             <!-- FOOTER CONTENT (SIMPLE CUSTOM) -->
-            <footer class="section simple-custom-footer theme-dark" data-scroll-section="" id="contact">
+            <footer class="section simple-custom-footer theme-dark" data-scroll-section="" data-scroll-persistent="" id="contact">
                 <div class="dotted-bg"></div>
-                <div class="container text-center" style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem 0 2rem 0;">
+                <div class="container text-center" style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1.5rem 5rem 1.5rem;">
 
                     <h2 style="font-size: 2.2rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem;">Contacto</h2>
                     <p style="color: #c9d1d9; font-size: 1rem; margin-bottom: 2rem;">Selecciona mi correo si deseas escribirme:</p>
@@ -1020,17 +1020,26 @@
             $(".btn-hamburger, .btn-menu").removeClass('active');
             $("main").removeClass('nav-active');
             
-            if (typeof scroll !== 'undefined' && scroll && typeof scroll.start === 'function') {
-                scroll.start();
-            }
+            if (typeof scroll !== 'undefined' && scroll) {
+                if (typeof scroll.start === 'function') {
+                    scroll.start();
+                }
+                if (typeof scroll.update === 'function') {
+                    scroll.update();
+                }
 
-            // If Locomotive Scroll instance is active, use its native scrollTo method
-            if (typeof scroll !== 'undefined' && scroll && typeof scroll.scrollTo === 'function') {
-                try {
-                    scroll.scrollTo(targetId, { duration: 1000, disableLerp: false });
-                    return;
-                } catch(err) {
-                    console.warn("Locomotive scrollTo error:", err);
+                if (typeof scroll.scrollTo === 'function') {
+                    try {
+                        if (targetId === '#contact') {
+                            // Scroll directly to bottom to ensure contact section and footer links are fully visible
+                            scroll.scrollTo('bottom', { duration: 900, disableLerp: false });
+                            return;
+                        }
+                        scroll.scrollTo(targetId, { duration: 900, disableLerp: false });
+                        return;
+                    } catch(err) {
+                        console.warn("Locomotive scrollTo error:", err);
+                    }
                 }
             }
 
@@ -1045,9 +1054,30 @@
             }
         }
 
+        // Fast Scrollbar Click Navigation
+        function initFastScrollbarClicks() {
+            document.addEventListener('mousedown', (e) => {
+                const scrollbar = document.querySelector('.c-scrollbar');
+                if (!scrollbar) return;
+                
+                // If user clicks on the scrollbar track directly (not the draggable thumb itself)
+                if (scrollbar.contains(e.target) && !e.target.classList.contains('c-scrollbar_thumb')) {
+                    e.preventDefault();
+                    const rect = scrollbar.getBoundingClientRect();
+                    const ratio = Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height));
+                    if (typeof scroll !== 'undefined' && scroll && scroll.scroll && scroll.scroll.instance) {
+                        const targetLimit = scroll.scroll.instance.limit.y;
+                        const targetY = ratio * targetLimit;
+                        scroll.scrollTo(targetY, { duration: 300, disableLerp: true });
+                    }
+                }
+            });
+        }
+
         // Initialize on DOM load
         document.addEventListener('DOMContentLoaded', () => {
             renderCardano();
+            initFastScrollbarClicks();
             
             // Close modals with Escape key
             document.addEventListener('keydown', (e) => {

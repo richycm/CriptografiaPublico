@@ -865,8 +865,8 @@
     position: relative;
     background-color: #0E1318; /* Matches body */
     overflow: hidden;
-    padding-top: 2.5rem !important;
-    padding-bottom: 2.5rem !important;
+    padding-top: 3.5rem !important;
+    padding-bottom: 5.5rem !important;
 }
 .simple-custom-footer .dotted-bg {
     position: absolute;
@@ -969,4 +969,61 @@
     font-size: 0.95rem !important;
 }
 
+/* =========================================================
+   BARRA DE DESPLAZAMIENTO RÁPIDA (LOCOMOTIVE SCROLLBAR)
+   ========================================================= */
+.c-scrollbar {
+    position: fixed !important;
+    right: 0 !important;
+    top: 0 !important;
+    width: 12px !important;
+    height: 100vh !important;
+    z-index: 999999 !important;
+    background: rgba(14, 19, 24, 0.45) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    border-left: 1px solid rgba(0, 198, 255, 0.15) !important;
+    opacity: 0.8 !important;
+    transition: opacity 0.25s ease, width 0.25s ease, background 0.25s ease !important;
+    transform: none !important;
+    cursor: pointer !important;
+}
 
+.c-scrollbar:hover,
+.has-scroll-scrolling .c-scrollbar,
+.has-scroll-dragging .c-scrollbar {
+    opacity: 1 !important;
+    width: 15px !important;
+    background: rgba(14, 19, 24, 0.85) !important;
+    box-shadow: -2px 0 15px rgba(0, 0, 0, 0.6) !important;
+}
+
+.c-scrollbar_thumb {
+    position: absolute !important;
+    top: 0 !important;
+    right: 2px !important;
+    width: 8px !important;
+    min-height: 45px !important;
+    background: linear-gradient(180deg, #00c6ff 0%, #0072ff 100%) !important;
+    border-radius: 999px !important;
+    opacity: 0.9 !important;
+    box-shadow: 0 0 12px rgba(0, 198, 255, 0.7) !important;
+    cursor: -webkit-grab !important;
+    cursor: grab !important;
+    transition: opacity 0.2s ease, width 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.c-scrollbar:hover .c-scrollbar_thumb {
+    width: 11px !important;
+    right: 2px !important;
+    opacity: 1 !important;
+    box-shadow: 0 0 18px rgba(0, 198, 255, 0.95) !important;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+    cursor: -webkit-grabbing !important;
+    cursor: grabbing !important;
+    background: linear-gradient(180deg, #38ef7d 0%, #11998e 100%) !important;
+    box-shadow: 0 0 20px rgba(56, 239, 125, 0.95) !important;
+    width: 11px !important;
+}

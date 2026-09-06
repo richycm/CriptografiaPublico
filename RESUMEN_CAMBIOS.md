@@ -114,6 +114,20 @@ Este documento detalla todas las modificaciones, optimizaciones, adiciones cript
   - Verificación del 100% de los recursos enlazados en `index.html` (scripts, estilos, fuentes, imágenes y descargas), confirmando cero enlaces rotos.
 
 ---
+
+## ⚡ 10. Barra de Desplazamiento Rápida & Corrección de Scroll a Contacto
+- **Implementación de la Barra de Desplazamiento Rápida (Locomotive Scrollbar):**
+  - Se configuró la barra `.c-scrollbar` con `position: fixed !important`, pista translúcida con efecto blur y borde cian visible en el extremo derecho de la pantalla (`z-index: 999999`).
+  - El indicador de desplazamiento (`.c-scrollbar_thumb`) se estilizó con un degradado neón vibrante (`#00c6ff` a `#0072ff`), sombra de resplandor (glow) y cursor de agarre (`grab`/`grabbing`).
+  - **Navegación ultrarrápida por clic en la pista:** Se agregó la función interactiva `initFastScrollbarClicks()` que detecta clics en cualquier parte de la barra lateral y salta de inmediato de manera proporcional a la posición deseada de la página.
+- **Solución al Error de Scroll hacia la Sección de Contacto (`#contact`):**
+  - **Detección de la Causa:** Locomotive Scroll calculaba la altura límite (`limit.y`) al arrancar antes de que las imágenes, fuentes y módulos dinámicos terminaran de cargarse. Como Vanilla Lazyload no notificaba cambios de tamaño y `window.onresize` tenía un error de asignación de función, el scroll quedaba truncado a medio camino y bloqueaba la llegada al pie de página.
+  - **Observador de Cambio de Tamaño (`ResizeObserver`):** Se implementó un observador nativo sobre el contenedor principal `[data-scroll-container]` que invoca automáticamente `scroll.update()` cada vez que cualquier imagen, rejilla o componente expande el documento.
+  - **Integración con LazyLoad & Carga:** Se configuraron los callbacks `callback_loaded` y `callback_finish` en Vanilla Lazyload, junto con listeners al evento `window.load` y `document.fonts.ready`.
+  - **Persistencia de la Sección de Contacto:** Se añadió el atributo `data-scroll-persistent=""` a `<footer id="contact">` y se amplió el espaciado inferior (`padding-bottom: 5.5rem`) para evitar que Locomotive Scroll oculte el pie o lo corte contra el borde inferior.
+  - **Alineación Exacta al Navegar:** Al seleccionar *Contacto* en el menú, `scrollToSection('#contact')` actualiza las métricas en tiempo real y ejecuta `scroll.scrollTo('bottom')`, garantizando que todos los correos, enlaces sociales, botones de descarga de CV y Llave RSA queden 100% visibles.
+
+---
 *Documento actualizado el 5 de Septiembre de 2026.*
 
 

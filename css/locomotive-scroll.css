@@ -26,16 +26,23 @@ html.has-scroll-dragging {
   height: 100%; }
 
 .c-scrollbar {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 11px;
-  height: 100%;
+  position: fixed !important;
+  right: 0 !important;
+  top: 0 !important;
+  width: 11px !important;
+  height: 100vh !important;
   transform-origin: center right;
-  transition: transform 0.3s, opacity 0.3s;
-  opacity: 0; }
+  transition: opacity 0.3s, width 0.3s, background 0.3s;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 1px solid rgba(0, 198, 255, 0.15);
+  opacity: 0.75;
+  z-index: 999999 !important;
+  cursor: pointer;
+}
   .c-scrollbar:hover {
-    transform: scaleX(1.45); }
+    width: 14px !important;
+    background: rgba(14, 19, 24, 0.85);
+  }
   .c-scrollbar:hover, .has-scroll-scrolling .c-scrollbar, .has-scroll-dragging .c-scrollbar {
     opacity: 1; }
   [data-scroll-direction="horizontal"] .c-scrollbar {
@@ -50,17 +57,29 @@ html.has-scroll-dragging {
 .c-scrollbar_thumb {
   position: absolute;
   top: 0;
-  right: 0;
-  background-color: black;
-  opacity: 0.5;
-  width: 7px;
+  right: 1px;
+  background: linear-gradient(180deg, #00c6ff 0%, #0072ff 100%) !important;
+  box-shadow: 0 0 10px rgba(0, 198, 255, 0.65) !important;
+  opacity: 0.9;
+  width: 9px;
+  min-height: 40px;
   border-radius: 10px;
-  margin: 2px;
+  margin: 1px 0;
   cursor: -webkit-grab;
-  cursor: grab; }
+  cursor: grab;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+  .c-scrollbar:hover .c-scrollbar_thumb {
+    width: 12px;
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(0, 198, 255, 0.9) !important;
+  }
   .has-scroll-dragging .c-scrollbar_thumb {
     cursor: -webkit-grabbing;
-    cursor: grabbing; }
+    cursor: grabbing;
+    background: linear-gradient(180deg, #38ef7d 0%, #11998e 100%) !important;
+    box-shadow: 0 0 18px rgba(56, 239, 125, 0.9) !important;
+  }
   [data-scroll-direction="horizontal"] .c-scrollbar_thumb {
     right: auto;
     bottom: 0; }
