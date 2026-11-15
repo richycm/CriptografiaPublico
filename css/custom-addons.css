@@ -907,6 +907,81 @@
     color: #00c6ff;
 }
 
+/* Public keys (RSA / ECDSA) download block */
+.public-keys-block {
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+}
+.public-keys-label {
+    margin: 0;
+    color: #8b949e;
+    font-family: 'Space Mono', 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+.public-keys-label i {
+    margin-right: 0.4rem;
+    color: #E5A93C;
+}
+.public-keys-row {
+    display: flex;
+    gap: 0.9rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.key-pill-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.65rem 1.3rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #c9d1d9;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.key-pill-custom span {
+    font-family: 'Space Mono', 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    opacity: 0.6;
+}
+.key-pill-custom.key-rsa i { color: #00C6FF; }
+.key-pill-custom.key-ecdsa i { color: #E5A93C; }
+.key-pill-custom.key-rsa:hover {
+    border-color: #00C6FF;
+    color: #fff;
+    background: rgba(0, 198, 255, 0.06);
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.15);
+}
+.key-pill-custom.key-ecdsa:hover {
+    border-color: #E5A93C;
+    color: #fff;
+    background: rgba(229, 169, 60, 0.08);
+    box-shadow: 0 0 15px rgba(229, 169, 60, 0.18);
+}
+
+/* Cyan skill tag (crypto) */
+.skill-tag.skill-cyan {
+    border-color: rgba(0, 198, 255, 0.45);
+    color: #00C6FF;
+    background: rgba(0, 198, 255, 0.08);
+}
+.skill-tag.skill-cyan:hover {
+    background: rgba(0, 198, 255, 0.2);
+    color: #fff;
+    border-color: #00C6FF;
+}
+
+@media (max-width: 540px) {
+    .email-pill-custom { font-size: 0.78rem; padding: 0.65rem 1.1rem; max-width: 100%; overflow-wrap: anywhere; }
+    .simple-custom-footer { padding-bottom: 3.5rem !important; }
+}
+
 /* Hide floating 'Ver' circle button on project preview hover */
 .mouse-pos-list-btn, 
 .mouse-pos-list-span {

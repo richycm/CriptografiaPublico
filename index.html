@@ -313,7 +313,7 @@
                         </div>
                         <div class="flex-col">
                             <div class="text-wrap fade-in animate" style="margin-top: 2rem;">
-                                <p style="font-size: 1.15rem; color: #8b949e; line-height: 1.7;">Estudiante de Ingeniería en Sistemas Computacionales en la Escuela Superior de Cómputo (ESCOM - IPN). Me apasiona la criptografía, la arquitectura de backend y la creación de experiencias interactivas eficientes.</p>
+                                <p style="font-size: 1.15rem; color: #4a4f57; line-height: 1.7;">Estudiante de Ingeniería en Sistemas Computacionales en la Escuela Superior de Cómputo (ESCOM - IPN). Me apasiona la criptografía, la arquitectura de backend y la creación de experiencias interactivas eficientes.</p>
                             </div>
                         </div>
                     </div>
@@ -348,7 +348,12 @@
                             <h5>02</h5>
                             <div class="stripe"></div>
                             <h4>Criptografía &amp; Seguridad</h4>
-                            <p>Implementación de algoritmos de cifrado simétrico y asimétrico (DES, RSA), transposición geométrica (Rejilla de Cardano), análisis de protocolos y protección de datos.</p>
+                            <p>Implementación de cifrado simétrico y asimétrico (DES, AES, RSA), firma digital con curvas elípticas (ECDSA), transposición geométrica (Rejilla de Cardano) y protección de datos.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag skill-cyan">AES · RSA</span>
+                                <span class="skill-tag skill-cyan">ECDSA</span>
+                                <span class="skill-tag">SHA-256</span>
+                            </div>
                         </div>
 
                         <!-- 03 Soluciones Integrales -->
@@ -357,6 +362,11 @@
                             <div class="stripe"></div>
                             <h4>Desarrollo Integral &amp; Web</h4>
                             <p>Creación de herramientas interactivas completas de principio a fin, interfaces dinámicas y aplicaciones web centradas en la experiencia de usuario y la eficiencia.</p>
+                            <div class="skill-tags">
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">React Native</span>
+                                <span class="skill-tag">HTML/CSS</span>
+                            </div>
                         </div>
 
                     </div>
@@ -699,7 +709,7 @@
                 <div class="dotted-bg"></div>
                 <div class="container text-center" style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem 1.5rem 5rem 1.5rem;">
 
-                    <h2 style="font-size: 2.2rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem;">Contacto</h2>
+                    <h2 style="font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 500; letter-spacing: -0.02em; color: #fff; margin-bottom: 0.8rem;">Contacto</h2>
                     <p style="color: #c9d1d9; font-size: 1rem; margin-bottom: 2rem;">Selecciona mi correo si deseas escribirme:</p>
                     
                     <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2.5rem;">
@@ -713,7 +723,14 @@
                         <a href="https://www.facebook.com/ricardo.carmona.5686" target="_blank" class="social-text-link-custom"><i class="fa-brands fa-facebook"></i> Facebook</a>
                         <a href="https://www.instagram.com/ricardo_carmar/" target="_blank" class="social-text-link-custom"><i class="fa-brands fa-instagram"></i> Instagram</a>
                         <a href="CV/Curriculum%20VITAE.pdf" download="Curriculum VITAE.pdf" target="_blank" class="social-text-link-custom"><i class="fa-solid fa-file-arrow-down" style="color: var(--accent-gold);"></i> Descargar CV</a>
-                        <a href="Llave/mi_clave_publica.pem" download="mi_clave_publica.pem" class="social-text-link-custom"><i class="fa-solid fa-key" style="color: var(--accent-cyan);"></i> Llave RSA (.pem)</a>
+                    </div>
+
+                    <div class="public-keys-block">
+                        <p class="public-keys-label"><i class="fa-solid fa-shield-halved"></i> Mis llaves públicas</p>
+                        <div class="public-keys-row">
+                            <a href="Llave/mi_clave_publica.pem" download="mi_clave_publica.pem" class="key-pill-custom key-rsa"><i class="fa-solid fa-key"></i> RSA 2048 <span>.pem</span></a>
+                            <a href="Llave/mi_clave_publica_ecdsa.pem" download="mi_clave_publica_ecdsa.pem" class="key-pill-custom key-ecdsa"><i class="fa-solid fa-key"></i> ECDSA P-256 <span>.pem</span></a>
+                        </div>
                     </div>
 
                     <div style="border-top: 1px solid rgba(0, 198, 255, 0.3); padding-top: 1.2rem; width: 100%; max-width: 350px; margin: 0 auto; text-align: center; display: flex; justify-content: center;">
